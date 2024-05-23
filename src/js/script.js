@@ -20,7 +20,7 @@ function validateForm(event) {
 	const consent = consentInput.checked;
 	let isValid = true;
 
-	if (firstName == 0) {
+	if (firstName.length === 0) {
 		isValid = false;
 
 		changeDisplayAlertClass("#first-name", "block");
@@ -30,7 +30,7 @@ function validateForm(event) {
 		changeInputErrorClass("#first-name", "remove");
 	}
 
-	if (lastName == 0) {
+	if (lastName.length === 0) {
 		isValid = false;
 
 		changeDisplayAlertClass("#last-name", "block");
@@ -58,7 +58,7 @@ function validateForm(event) {
 		changeDisplayAlertClass(".input-container:nth-child(3)", "none", " ");
 	}
 
-	if (message == 0) {
+	if (message.length === 0) {
 		isValid = false;
 
 		changeDisplayAlertClass("#message", "block");
