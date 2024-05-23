@@ -1,0 +1,111 @@
+@import "./global.scss";
+@import "./inputs.scss";
+
+.contact-form {
+	@include flexColumn;
+	padding: 35px 40px;
+	gap: 35px;
+
+	width: 735px;
+	min-height: 750px;
+	border-radius: 20px;
+	background-color: $color-white;
+
+	h1 {
+		font-size: 31px;
+		font-weight: 700;
+		color: $color-dark-grey;
+	}
+
+	.inputs-container {
+		@include flexColumn;
+		gap: 20px;
+
+		.input-container {
+			label {
+				color: $color-dark-grey;
+				font-weight: 400;
+			}
+
+			.input-title {
+				font-size: 16px;
+				display: inline-block;
+				margin-bottom: 10px;
+			}
+
+			.required-input {
+				margin-left: 10px;
+			}
+		}
+
+		.form-alert {
+			// display: block;
+			display: none;
+			color: $color-red;
+			margin-top: 10px;
+		}
+
+		.input-error {
+			border: 1px solid $color-red;
+		}
+
+		.inputs-wrapper {
+			@include flexRow;
+			gap: 20px;
+		}
+		.checkbox-input {
+			margin: 10px 5px;
+		}
+	}
+	.submit-button {
+		margin-top: 10px;
+	}
+}
+
+.success-message {
+	position: fixed;
+	background-color: $color-dark-grey;
+	color: $color-light-green;
+	padding: 25px;
+	top: 2%;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 12px;
+	opacity: 0;
+
+	.message-header {
+		@include flexRow;
+		@include fontKarlaBold;
+		color: $color-white;
+		font-size: 18px;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 15px;
+	}
+}
+
+.success-message.show {
+	display: block;
+	pointer-events: all;
+	animation-name: fadeOut;
+	animation-duration: 5s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+	0%,
+	25%,
+	50%,
+	75% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@media (max-width: 376px) {
+	.inputs-wrapper {
+		font-size: 1px;
+	}
+}

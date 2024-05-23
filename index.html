@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/favicon/favicon-32x32.png"
+		/>
+		<title>Contact form</title>
+		<link rel="stylesheet" href="./src/scss/style.scss" />
+	</head>
+	<body>
+		<form class="contact-form" id="contact-form">
+			<h1>Contact Us</h1>
+
+			<div class="inputs-container">
+				<div class="input-container inputs-wrapper">
+					<div>
+						<label for="first-name" class="input-title"
+							>First Name<span class="required-input">*</span></label
+						>
+						<input type="text" name="first-name" id="first-name" />
+						<span class="form-alert">This field is required</span>
+					</div>
+					<div>
+						<label for="last-name" class="input-title"
+							>Last Name<span class="required-input">*</span></label
+						>
+						<input type="text" name="last-name" id="last-name" />
+						<span class="form-alert">This field is required</span>
+					</div>
+				</div>
+
+				<div class="input-container">
+					<label for="email" class="input-title"
+						>Email Address<span class="required-input">*</span></label
+					>
+					<input type="email" name="email" id="email" />
+					<span class="form-alert">Please enter a valid email address</span>
+				</div>
+
+				<div class="input-container">
+					<label for="query-type" class="input-title"
+						>Query type<span class="required-input">*</span></label
+					>
+					<div class="inputs-wrapper">
+						<div class="radio-input">
+							<input
+								type="radio"
+								name="query-type"
+								id="general-enquiry"
+								value="General Enquiry"
+							/>
+							<label for="general-enquiry">General Enquiry</label>
+						</div>
+						<div class="radio-input">
+							<input
+								type="radio"
+								name="query-type"
+								id="support-request"
+								value="Support Request"
+							/>
+							<label for="support-request">Support Request</label>
+						</div>
+					</div>
+					<span class="form-alert">Please select a query type</span>
+				</div>
+
+				<div class="input-container">
+					<label for="message" class="input-title"
+						>Message<span class="required-input">*</span></label
+					>
+					<textarea name="message" id="message" rows="4"></textarea>
+					<span class="form-alert">This field is required</span>
+				</div>
+
+				<div class="input-container checkbox-input">
+					<div class="inputs-wrapper">
+						<input type="checkbox" name="consent" id="consent" />
+						<label for="consent"
+							>I consent to being contacted by the team<span
+								class="required-input"
+								>*</span
+							></label
+						>
+					</div>
+					<span class="form-alert"
+						>To submit this form, please consent to being contacted</span
+					>
+				</div>
+			</div>
+
+			<button type="submit" id="submit-button" class="submit-button">
+				Submit
+			</button>
+		</form>
+
+		<div class="success-message" id="success-message">
+			<div class="message-header">
+				<img src="/icon-success-check.svg" alt="success icon" />
+				<span>Message Sent!</span>
+			</div>
+			<span>Thanks for completing the form. We'll be in touch soon!</span>
+		</div>
+		<script src="./src/js/script.js"></script>
+	</body>
+</html>
