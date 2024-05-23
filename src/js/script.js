@@ -23,59 +23,59 @@ function validateForm(event) {
 	if (firstName == 0) {
 		isValid = false;
 
-		toggleDisplayAlertClass("#first-name", "block");
-		toggleInputErrorClass("#first-name", "add");
+		changeDisplayAlertClass("#first-name", "block");
+		changeInputErrorClass("#first-name", "add");
 	} else {
-		toggleDisplayAlertClass("#first-name", "none");
-		toggleInputErrorClass("#first-name", "remove");
+		changeDisplayAlertClass("#first-name", "none");
+		changeInputErrorClass("#first-name", "remove");
 	}
 
 	if (lastName == 0) {
 		isValid = false;
 
-		toggleDisplayAlertClass("#last-name", "block");
-		toggleInputErrorClass("#last-name", "add");
+		changeDisplayAlertClass("#last-name", "block");
+		changeInputErrorClass("#last-name", "add");
 	} else {
-		toggleDisplayAlertClass("#last-name", "none");
-		toggleInputErrorClass("#last-name", "remove");
+		changeDisplayAlertClass("#last-name", "none");
+		changeInputErrorClass("#last-name", "remove");
 	}
 
 	if (!emailValidation(email)) {
 		isValid = false;
 
-		toggleDisplayAlertClass("#email", "block");
-		toggleInputErrorClass("#email", "add");
+		changeDisplayAlertClass("#email", "block");
+		changeInputErrorClass("#email", "add");
 	} else {
-		toggleDisplayAlertClass("#email", "none");
-		toggleInputErrorClass("#email", "remove");
+		changeDisplayAlertClass("#email", "none");
+		changeInputErrorClass("#email", "remove");
 	}
 
 	if (queryType === null) {
 		isValid = false;
 
-		toggleDisplayAlertClass(".input-container:nth-child(3)", "block", " ");
+		changeDisplayAlertClass(".input-container:nth-child(3)", "block", " ");
 	} else {
-		toggleDisplayAlertClass(".input-container:nth-child(3)", "none", " ");
+		changeDisplayAlertClass(".input-container:nth-child(3)", "none", " ");
 	}
 
 	if (message == 0) {
 		isValid = false;
 
-		toggleDisplayAlertClass("#message", "block");
-		toggleInputErrorClass("#message", "add");
+		changeDisplayAlertClass("#message", "block");
+		changeInputErrorClass("#message", "add");
 	} else {
-		toggleDisplayAlertClass("#message", "none");
-		toggleInputErrorClass("#message", "remove");
+		changeDisplayAlertClass("#message", "none");
+		changeInputErrorClass("#message", "remove");
 	}
 
 	if (!consent) {
 		isValid = false;
 
-		toggleDisplayAlertClass(".checkbox-input", "block", " ");
-		toggleInputErrorClass("#consent", "add");
+		changeDisplayAlertClass(".checkbox-input", "block", " ");
+		changeInputErrorClass("#consent", "add");
 	} else {
-		toggleDisplayAlertClass(".checkbox-input", "none", " ");
-		toggleInputErrorClass("#consent", "remove");
+		changeDisplayAlertClass(".checkbox-input", "none", " ");
+		changeInputErrorClass("#consent", "remove");
 	}
 
 	if (isValid) {
@@ -90,11 +90,11 @@ function emailValidation(email) {
 	return pattern.test(email);
 }
 
-function toggleInputErrorClass(selector, action) {
+function changeInputErrorClass(selector, action) {
 	document.querySelector(`${selector}`).classList[`${action}`]("input-error");
 }
 
-function toggleDisplayAlertClass(selector, display, combinator = "+") {
+function changeDisplayAlertClass(selector, display, combinator = "+") {
 	document.querySelector(
 		`${selector} ${combinator} .form-alert`
 	).style.display = `${display}`;
