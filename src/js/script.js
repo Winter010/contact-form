@@ -18,71 +18,64 @@ function validateForm(event) {
 	const queryType = document.querySelector(`input[name="query-type"]:checked`);
 	const message = messageInput.value;
 	const consent = consentInput.checked;
-
 	let isValid = true;
 
-	if (firstName === "") {
+	if (firstName == 0) {
 		isValid = false;
 
-		document.querySelector("#first-name + .form-alert").style.display = "block";
-		document.querySelector("#first-name").classList.add("input-error");
+		toggleDisplayAlertClass("#first-name", "block");
+		toggleInputErrorClass("#first-name", "add");
 	} else {
-		document.querySelector("#first-name + .form-alert").style.display = "none";
-		document.querySelector("#first-name").classList.remove("input-error");
+		toggleDisplayAlertClass("#first-name", "none");
+		toggleInputErrorClass("#first-name", "remove");
 	}
 
-	if (lastName === "") {
+	if (lastName == 0) {
 		isValid = false;
 
-		document.querySelector("#last-name + .form-alert").style.display = "block";
-		document.querySelector("#last-name").classList.add("input-error");
+		toggleDisplayAlertClass("#last-name", "block");
+		toggleInputErrorClass("#last-name", "add");
 	} else {
-		document.querySelector("#last-name + .form-alert").style.display = "none";
-		document.querySelector("#last-name").classList.remove("input-error");
+		toggleDisplayAlertClass("#last-name", "none");
+		toggleInputErrorClass("#last-name", "remove");
 	}
 
 	if (!emailValidation(email)) {
 		isValid = false;
 
-		document.querySelector("#email + .form-alert").style.display = "block";
-		document.querySelector("#email").classList.add("input-error");
+		toggleDisplayAlertClass("#email", "block");
+		toggleInputErrorClass("#email", "add");
 	} else {
-		document.querySelector("#email + .form-alert").style.display = "none";
-		document.querySelector("#email").classList.remove("input-error");
+		toggleDisplayAlertClass("#email", "none");
+		toggleInputErrorClass("#email", "remove");
 	}
 
 	if (queryType === null) {
 		isValid = false;
 
-		document.querySelector(
-			".input-container:nth-child(3) .form-alert"
-		).style.display = "block";
+		toggleDisplayAlertClass(".input-container:nth-child(3)", "block", " ");
 	} else {
-		document.querySelector(
-			".input-container:nth-child(3) .form-alert"
-		).style.display = "none";
+		toggleDisplayAlertClass(".input-container:nth-child(3)", "none", " ");
 	}
 
-	if (message === "") {
+	if (message == 0) {
 		isValid = false;
 
-		document.querySelector("#message + .form-alert").style.display = "block";
-		document.querySelector("#message").classList.add("input-error");
+		toggleDisplayAlertClass("#message", "block");
+		toggleInputErrorClass("#message", "add");
 	} else {
-		document.querySelector("#message + .form-alert").style.display = "none";
-		document.querySelector("#message").classList.remove("input-error");
+		toggleDisplayAlertClass("#message", "none");
+		toggleInputErrorClass("#message", "remove");
 	}
 
 	if (!consent) {
 		isValid = false;
 
-		document.querySelector(".checkbox-input .form-alert").style.display =
-			"block";
-		document.querySelector("#consent").classList.add("input-error");
+		toggleDisplayAlertClass(".checkbox-input", "block", " ");
+		toggleInputErrorClass("#consent", "add");
 	} else {
-		document.querySelector(".checkbox-input .form-alert").style.display =
-			"none";
-		document.querySelector("#consent").classList.remove("input-error");
+		toggleDisplayAlertClass(".checkbox-input", "none", " ");
+		toggleInputErrorClass("#consent", "remove");
 	}
 
 	if (isValid) {
@@ -95,4 +88,14 @@ function validateForm(event) {
 function emailValidation(email) {
 	const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return pattern.test(email);
+}
+
+function toggleInputErrorClass(selector, action) {
+	document.querySelector(`${selector}`).classList[`${action}`]("input-error");
+}
+
+function toggleDisplayAlertClass(selector, display, combinator = "+") {
+	document.querySelector(
+		`${selector} ${combinator} .form-alert`
+	).style.display = `${display}`;
 }
