@@ -2,22 +2,22 @@ const form = document.getElementById("contact-form");
 const successMessage = document.getElementById("success-message");
 
 const firstNameInput = document.getElementById("first-name");
-const firstNameAlertBlock = document.querySelector("#first-name + .form-alert");
+const firstNameHint = document.querySelector("#first-name + .input-hint");
 
 const lastNameInput = document.getElementById("last-name");
-const lastNameAlertBlock = document.querySelector("#last-name + .form-alert");
+const lastNameHint = document.querySelector("#last-name + .input-hint");
 
 const emailInput = document.getElementById("email");
-const emailAlertBlock = document.querySelector("#email + .form-alert");
+const emailHint = document.querySelector("#email + .input-hint");
 
 const messageInput = document.getElementById("message");
-const messageAlertBlock = document.querySelector("#message + .form-alert");
+const messageHint = document.querySelector("#message + .input-hint");
 
 const consentInput = document.getElementById("consent");
-const consentAlertBlock = document.querySelector(".checkbox-input .form-alert");
+const consentHint = document.querySelector(".checkbox-input .input-hint");
 
-const queryTypeAlertBlock = document.querySelector(
-	".input-container:nth-child(3) .form-alert"
+const queryTypeHint = document.querySelector(
+	".input-container:nth-child(3) .input-hint"
 );
 
 form.addEventListener("submit", validateForm);
@@ -36,49 +36,49 @@ function validateForm(event) {
 	if (firstName.length === 0) {
 		isValid = false;
 
-		addError(firstNameInput, firstNameAlertBlock);
+		addError(firstNameInput, firstNameHint);
 	} else {
-		removeError(firstNameInput, firstNameAlertBlock);
+		removeError(firstNameInput, firstNameHint);
 	}
 
 	if (lastName.length === 0) {
 		isValid = false;
 
-		addError(lastNameInput, lastNameAlertBlock);
+		addError(lastNameInput, lastNameHint);
 	} else {
-		removeError(lastNameInput, lastNameAlertBlock);
+		removeError(lastNameInput, lastNameHint);
 	}
 
 	if (!emailValidation(email)) {
 		isValid = false;
 
-		addError(emailInput, emailAlertBlock);
+		addError(emailInput, emailHint);
 	} else {
-		removeError(emailInput, emailAlertBlock);
+		removeError(emailInput, emailHint);
 	}
 
 	if (queryType === null) {
 		isValid = false;
 
-		addError(null, queryTypeAlertBlock);
+		addError(null, queryTypeHint);
 	} else {
-		removeError(null, queryTypeAlertBlock);
+		removeError(null, queryTypeHint);
 	}
 
 	if (message.length === 0) {
 		isValid = false;
 
-		addError(messageInput, messageAlertBlock);
+		addError(messageInput, messageHint);
 	} else {
-		removeError(messageInput, messageAlertBlock);
+		removeError(messageInput, messageHint);
 	}
 
 	if (!consent) {
 		isValid = false;
 
-		addError(consentInput, consentAlertBlock);
+		addError(consentInput, consentHint);
 	} else {
-		removeError(consentInput, consentAlertBlock);
+		removeError(consentInput, consentHint);
 	}
 
 	if (isValid) {
@@ -92,13 +92,12 @@ function emailValidation(email) {
 	const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	return pattern.test(email);
 }
-
-function addError(input, alertBlock) {
+function addError(input, hint) {
 	input?.classList.add("input-error");
-	alertBlock.style.display = "block";
+	hint.style.display = "block";
 }
 
-function removeError(input, alertBlock) {
+function removeError(input, hint) {
 	input?.classList.remove("input-error");
-	alertBlock.style.display = "none";
+	hint.style.display = "none";
 }
