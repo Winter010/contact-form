@@ -1,11 +1,24 @@
 const form = document.getElementById("contact-form");
-const firstNameInput = document.getElementById("first-name");
-const lastNameInput = document.getElementById("last-name");
-const emailInput = document.getElementById("email");
-const messageInput = document.getElementById("message");
-const consentInput = document.getElementById("consent");
-
 const successMessage = document.getElementById("success-message");
+
+const firstNameInput = document.getElementById("first-name");
+const firstNameAlertBlock = document.querySelector("#first-name + .form-alert");
+
+const lastNameInput = document.getElementById("last-name");
+const lastNameAlertBlock = document.querySelector("#last-name + .form-alert");
+
+const emailInput = document.getElementById("email");
+const emailAlertBlock = document.querySelector("#email + .form-alert");
+
+const messageInput = document.getElementById("message");
+const messageAlertBlock = document.querySelector("#message + .form-alert");
+
+const consentInput = document.getElementById("consent");
+const consentAlertBlock = document.querySelector(".checkbox-input .form-alert");
+
+const queryTypeAlertBlock = document.querySelector(
+	".input-container:nth-child(3) .form-alert"
+);
 
 form.addEventListener("submit", validateForm);
 
@@ -23,59 +36,49 @@ function validateForm(event) {
 	if (firstName.length === 0) {
 		isValid = false;
 
-		changeDisplayAlertClass("#first-name", "block");
-		changeInputErrorClass("#first-name", "add");
+		addError(firstNameInput, firstNameAlertBlock);
 	} else {
-		changeDisplayAlertClass("#first-name", "none");
-		changeInputErrorClass("#first-name", "remove");
+		removeError(firstNameInput, firstNameAlertBlock);
 	}
 
 	if (lastName.length === 0) {
 		isValid = false;
 
-		changeDisplayAlertClass("#last-name", "block");
-		changeInputErrorClass("#last-name", "add");
+		addError(lastNameInput, lastNameAlertBlock);
 	} else {
-		changeDisplayAlertClass("#last-name", "none");
-		changeInputErrorClass("#last-name", "remove");
+		removeError(lastNameInput, lastNameAlertBlock);
 	}
 
 	if (!emailValidation(email)) {
 		isValid = false;
 
-		changeDisplayAlertClass("#email", "block");
-		changeInputErrorClass("#email", "add");
+		addError(emailInput, emailAlertBlock);
 	} else {
-		changeDisplayAlertClass("#email", "none");
-		changeInputErrorClass("#email", "remove");
+		removeError(emailInput, emailAlertBlock);
 	}
 
 	if (queryType === null) {
 		isValid = false;
 
-		changeDisplayAlertClass(".input-container:nth-child(3)", "block", " ");
+		addError(null, queryTypeAlertBlock);
 	} else {
-		changeDisplayAlertClass(".input-container:nth-child(3)", "none", " ");
+		removeError(null, queryTypeAlertBlock);
 	}
 
 	if (message.length === 0) {
 		isValid = false;
 
-		changeDisplayAlertClass("#message", "block");
-		changeInputErrorClass("#message", "add");
+		addError(messageInput, messageAlertBlock);
 	} else {
-		changeDisplayAlertClass("#message", "none");
-		changeInputErrorClass("#message", "remove");
+		removeError(messageInput, messageAlertBlock);
 	}
 
 	if (!consent) {
 		isValid = false;
 
-		changeDisplayAlertClass(".checkbox-input", "block", " ");
-		changeInputErrorClass("#consent", "add");
+		addError(consentInput, consentAlertBlock);
 	} else {
-		changeDisplayAlertClass(".checkbox-input", "none", " ");
-		changeInputErrorClass("#consent", "remove");
+		removeError(consentInput, consentAlertBlock);
 	}
 
 	if (isValid) {
@@ -90,12 +93,12 @@ function emailValidation(email) {
 	return pattern.test(email);
 }
 
-function changeInputErrorClass(selector, action) {
-	document.querySelector(`${selector}`).classList[`${action}`]("input-error");
+function addError(input, alertBlock) {
+	input?.classList.add("input-error");
+	alertBlock.style.display = "block";
 }
 
-function changeDisplayAlertClass(selector, display, combinator = "+") {
-	document.querySelector(
-		`${selector} ${combinator} .form-alert`
-	).style.display = `${display}`;
+function removeError(input, alertBlock) {
+	input?.classList.remove("input-error");
+	alertBlock.style.display = "none";
 }
